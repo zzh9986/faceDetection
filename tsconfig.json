@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "sourceMap": false,
+        "noImplicitAny": false,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "es2015",
+            "es2017",
+            "dom",
+            "es2018.promise"
+        ],
+        "jsx": "react",
+        "baseUrl": "./",
+        "allowJs": true,
+        "skipLibCheck": false,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true
+    },
+    "include": [
+        "./src/**/*",
+        "./entry/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
