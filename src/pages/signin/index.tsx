@@ -22,6 +22,10 @@ export default props => {
 			setPwdBlank(true);
 			return;
 		}
+		if (type === "") {
+			setErrorTip("请选择用户类型")
+			return;
+		}
 		const params = {
 			user_id: username,
 			user_password: password,
