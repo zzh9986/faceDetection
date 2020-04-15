@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getTeacherInfo } from "../../api";
+import { getAdminInfo } from "../../api";
 import 'antd/dist/antd.css';
 import "./index.scss";
 import { Layout } from "../../components";
@@ -9,18 +9,21 @@ const { Content } = Layout;
 
 export default props => {
 	const { useState, useEffect } = React;
-	const [name, setName] = useState<string>("");
+	const [admin, setAdmin] = useState<string>("");
 	const [dataList, setDataList] = useState<any>([]);
 	const link: string = props.match.url.substring(props.match.url.lastIndexOf("/") + 1);
+
+	useEffect(() => {
+		setAdmin(localStorage.getItem("admin_name"))
+	}, [])
+
 	const getInfo = () => {
 		const params = {
-			userId: localStorage.getItem("user_id")
+			adminId: localStorage.getItem("admin_id")
 		}
-		getTeacherInfo(params).then((res) => {
+		getAdminInfo(params).then((res) => {
 			console.log(res)
 			if (res.data.status === 0) {
-				localStorage.setItem("user_name", res.data.teacherName)
-				setName(res.data.teacherName)
 				setDataList(res.data.content)
 			}
 		}).catch((err) => {
@@ -29,33 +32,30 @@ export default props => {
 	}
 
 	const signOut = () => {
-		localStorage.removeItem("user_id");
-		localStorage.removeItem("user_name");
+		localStorage.removeItem("admin_name");
+		localStorage.removeItem("admin_id");
 		props.history.$push(`${props.match.url.replace(link, "signin")}`)
 	}
 
-	console.log(dataList)
-
 	const columns = [
 		{
-			title: '课程ID',
+			title: '教师ID',
 			dataIndex: 'id',
 			key: 'id'
 		},
 		{
-			title: '课程名称',
-			dataIndex: 'courseName',
-			key: 'courseName'
+			title: '教师姓名',
+			dataIndex: 'name',
+			key: 'name'
 		},
 		{
-			title: '应到人数',
-			dataIndex: 'studentCount',
-			key: 'studentCount'
-		},
-		{
-			title: '课程教室',
-			dataIndex: 'clazzRoom',
-			key: 'clazzRoom'
+			title: '教授课程',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<span>{res.clazz.join('、')}</span>
+				</span>
+			)
 		},
 		{
 			title: '操作',
@@ -78,12 +78,12 @@ export default props => {
 	return (
 		<>
 			<div className="header">
-				<p className="tip">您好，{name}</p>
+				<p className="tip">您好，{admin}</p>
 				<a className="signout" onClick={signOut}>退出</a>
 			</div>
 			<Layout>
 				<Content>
-					<Table bordered={true} columns={columns} dataSource={dataList} pagination={false} size={"middle"} />
+					<Table className="tablebox" bordered={true} columns={columns} dataSource={dataList} pagination={false} size={"middle"} />
 				</Content>
 			</Layout>
 		</>

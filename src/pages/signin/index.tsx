@@ -27,15 +27,20 @@ export default props => {
 			return;
 		}
 		const params = {
-			user_id: username,
-			user_password: password,
+			userId: username,
+			userPassword: password,
 			type: type
 		}
 		signIn(params).then(res => {
 			if (res.data.status === 0) {
-				props.history.$push(`${props.match.url.replace(link, "info")}`)
-				localStorage.setItem("user_id", username)
-				localStorage.setItem("user_pwd", password)
+				if (type === 'admin') {
+					props.history.$push(`${props.match.url.replace(link, "admin")}`)
+					localStorage.setItem("admin_id", username)
+					localStorage.setItem("admin_name", res.data.adminName)
+				} else {
+					props.history.$push(`${props.match.url.replace(link, "info")}`)
+					localStorage.setItem("user_id", username)
+				}
 			}
 			if (res.data.status === -1) {
 				setErrorTip(res.data.msg)
@@ -104,7 +109,11 @@ export default props => {
 						/>
 						<div className="radiobox">
 							<input type="radio" name="status" value="teacher" onChange={(e) => { setType(e.target.value) }} />教师
-							<input type="radio" name="status" value="admin" className="admin" onChange={(e) => { setType(e.target.value) }} />管理员
+							<input type="radio" name="status" value="admin" className="admin"
+								onChange={(e) => {
+									setType(e.target.value)
+								}}
+							/>管理员
 						</div>
 						<button className="login-btn" onClick={handleSave}>
 							登录
