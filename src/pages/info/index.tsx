@@ -60,10 +60,10 @@ export default props => {
 		{
 			title: '操作',
 			key: 'action',
-			render: () => (
+			render: (res) => (
 				<span>
 					<a onClick={() => {
-						props.history.$push(`${props.match.url.replace(link, "course")}`)
+						props.history.$push(`${props.match.url.replace(link, `course?id=${res.id}&stucount=${res.studentCount}`)}`)
 					}}>查看详情</a>
 				</span>
 			)
