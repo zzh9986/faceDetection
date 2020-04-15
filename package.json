@@ -88,14 +88,20 @@
 		"react-dom": "^16.8.6"
 	},
 	"dependencies": {
+		"antd": "^4.1.3",
 		"axios": "^0.18.0",
+		"classnames": "^2.2.6",
 		"crypto-js": "^3.1.9-1",
 		"md5": "^2.2.1",
 		"mobx": "^5.1.1",
 		"mobx-react": "^5.2.8",
+		"prop-types": "^15.7.2",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6",
+		"react-intl-universal": "^2.2.5",
 		"react-router": "^5.0.1",
-		"react-router-dom": "^5.0.1"
+		"react-router-dom": "^5.0.1",
+		"react-select": "^3.0.4",
+		"react-x-component": "^0.1.92"
 	}
 }

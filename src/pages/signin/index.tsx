@@ -27,8 +27,8 @@ export default props => {
 			return;
 		}
 		const params = {
-			user_id: username,
-			user_password: password,
+			userId: username,
+			userPassword: password,
 			type: type
 		}
 		signIn(params).then(res => {
@@ -103,7 +103,11 @@ export default props => {
 						/>
 						<div className="radiobox">
 							<input type="radio" name="status" value="teacher" onChange={(e) => { setType(e.target.value) }} />教师
-							<input type="radio" name="status" value="admin" className="admin" onChange={(e) => { setType(e.target.value) }} />管理员
+							<input type="radio" name="status" value="admin" className="admin"
+								onChange={(e) => {
+									setType(e.target.value)
+								}}
+							/>管理员
 						</div>
 						<button className="login-btn" onClick={handleSave}>
 							登录
