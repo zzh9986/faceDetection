@@ -23,8 +23,7 @@ export default props => {
 			id: props.location.query.id
 		}
 		getCourseInfo(params).then((res) => {
-			console.log(res)
-			if (res.status === 200) {
+			if (res.data.status === 0) {
 				console.log("status")
 				setDataList(res.data.content)
 			}
@@ -56,7 +55,7 @@ export default props => {
 			key: 'action',
 			render: (res) => (
 				<span>
-					<img style={{ width: 250, height: 200 }} src={res.images[0]["0"]} />
+					<img style={{ width: 250, height: 200 }} src={res.image[0]["0"]} />
 				</span>
 			)
 		},
@@ -74,7 +73,7 @@ export default props => {
 			key: 'action',
 			render: (res) => (
 				<span>
-					<img style={{ width: 250, height: 200 }} src={res.images[1]["0"]} />
+					<img style={{ width: 250, height: 200 }} src={res.image[1]["0"]} />
 				</span>
 			)
 		},
@@ -92,7 +91,7 @@ export default props => {
 			key: 'action',
 			render: (res) => (
 				<span>
-					<img style={{ width: 250, height: 200 }} src={res.images[2]["1"]} />
+					<img style={{ width: 250, height: 200 }} src={res.image[2]["1"]} />
 				</span>
 			)
 		},

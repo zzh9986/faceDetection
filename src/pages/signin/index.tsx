@@ -33,8 +33,14 @@ export default props => {
 		}
 		signIn(params).then(res => {
 			if (res.data.status === 0) {
-				props.history.$push(`${props.match.url.replace(link, "info")}`)
-				localStorage.setItem("user_id", username)
+				if (type === 'admin') {
+					props.history.$push(`${props.match.url.replace(link, "admin")}`)
+					localStorage.setItem("admin_id", username)
+					localStorage.setItem("admin_name", res.data.adminName)
+				} else {
+					props.history.$push(`${props.match.url.replace(link, "info")}`)
+					localStorage.setItem("user_id", username)
+				}
 			}
 			if (res.data.status === -1) {
 				setErrorTip(res.data.msg)
