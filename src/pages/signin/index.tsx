@@ -35,7 +35,6 @@ export default props => {
 			if (res.data.status === 0) {
 				props.history.$push(`${props.match.url.replace(link, "info")}`)
 				localStorage.setItem("user_id", username)
-				localStorage.setItem("user_pwd", password)
 			}
 			if (res.data.status === -1) {
 				setErrorTip(res.data.msg)
