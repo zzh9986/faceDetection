@@ -17,9 +17,7 @@ export default props => {
 			userId: localStorage.getItem("user_id")
 		}
 		getTeacherInfo(params).then((res) => {
-			console.log(res)
 			if (res.data.status === 0) {
-				localStorage.setItem("user_name", res.data.teacherName)
 				setName(res.data.teacherName)
 				setDataList(res.data.content)
 			}
@@ -30,11 +28,13 @@ export default props => {
 
 	const signOut = () => {
 		localStorage.removeItem("user_id");
-		localStorage.removeItem("user_name");
 		props.history.$push(`${props.match.url.replace(link, "signin")}`)
 	}
 
-	console.log(dataList)
+	// const jumpCourse = () => {
+	// 	console.log("1")
+	// 	props.history.$push(`${props.match.url.replace(link, "course")}`)
+	// }
 
 	const columns = [
 		{
@@ -61,11 +61,7 @@ export default props => {
 			title: '操作',
 			key: 'action',
 			render: () => (
-				<span>
-					<a onClick={() => {
-						props.history.$push(`${props.match.url.replace(link, "course")}`)
-					}}>查看详情</a>
-				</span>
+				<span>llllll</span>
 			)
 		}
 	];

@@ -3,6 +3,7 @@ import { Router, Switch, Route, Redirect, RouteComponentProps } from 'react-rout
 import SignIn from './pages/signin';
 import SignUp from './pages/signup';
 import Info from './pages/info';
+import Course from './pages/course';
 
 interface IRedirectGen {
 	pathname: string,
@@ -25,6 +26,7 @@ const MainRouter: React.FunctionComponent<RouteComponentProps> = (props) => {
 				<Route path={pathGenerate('signin')} component={SignIn} />
 				<Route path={pathGenerate('signup')} component={SignUp} />
 				<Route path={pathGenerate('info')} component={Info} />
+				<Route path={pathGenerate('course')} component={Course} />
 				<Route render={({ location }) => <Redirect to={redirectPathGenerate('signin', location)} />} />
 			</Switch>
 		</Router>
