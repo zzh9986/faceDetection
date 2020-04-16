@@ -55,7 +55,7 @@ export default props => {
 			key: 'action',
 			render: (res) => (
 				<span>
-					<img style={{ width: 250, height: 200 }} src={res.image[0]["0"]} />
+					<img style={{ width: 250, height: 200 }} src={res.images[0]["image"]} />
 				</span>
 			)
 		},
@@ -73,7 +73,7 @@ export default props => {
 			key: 'action',
 			render: (res) => (
 				<span>
-					<img style={{ width: 250, height: 200 }} src={res.image[1]["0"]} />
+					<img style={{ width: 250, height: 200 }} src={res.images[1]["image"]} />
 				</span>
 			)
 		},
@@ -91,7 +91,7 @@ export default props => {
 			key: 'action',
 			render: (res) => (
 				<span>
-					<img style={{ width: 250, height: 200 }} src={res.image[2]["1"]} />
+					<img style={{ width: 250, height: 200 }} src={res.images[2]["image"]} />
 				</span>
 			)
 		},
