@@ -63,7 +63,10 @@ export default props => {
 			render: (res) => (
 				<span>
 					<a onClick={() => {
-						props.history.$push(`${props.match.url.replace(link, `course?id=${res.id}&stucount=${res.studentCount}`)}`)
+						console.log("id",res.id)
+						localStorage.setItem("class_id",res.id)
+						localStorage.setItem("class_count", res.studentCount)
+						props.history.$push(`${props.match.url.replace(link, `course`)}`)
 					}}>查看详情</a>
 				</span>
 			)

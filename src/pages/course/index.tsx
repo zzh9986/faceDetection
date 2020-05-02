@@ -12,7 +12,7 @@ export default props => {
 	const [name, setName] = useState<string>("");
 	const [dataList, setDataList] = useState<any>([]);
 	const link: string = props.match.url.substring(props.match.url.lastIndexOf("/") + 1);
-	const count = props.location.query.stucount;
+	const count = localStorage.getItem("class_count")
 
 	useEffect(() => {
 		setName(localStorage.getItem("user_name"))
@@ -20,7 +20,7 @@ export default props => {
 
 	const getInfo = () => {
 		const params = {
-			id: props.location.query.id
+			id: Number(localStorage.getItem("class_id"))
 		}
 		getCourseInfo(params).then((res) => {
 			if (res.data.status === 0) {
