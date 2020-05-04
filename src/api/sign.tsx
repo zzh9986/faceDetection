@@ -29,5 +29,5 @@ export function searchCourse(params?) {
 }
 
 export function analyzeCamera(params?) {
-	return $ajax.$post("http://rgtc22.natappfree.cc/analyze", params)
+	return $ajax.$post("http://rgtc22.natappfree.cc/analyze1", params)
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 import 'antd/dist/antd.css';
-import { Layout, Menu, Input, Button, Alert } from "antd";
+import { Layout, Menu, Input, Button, Alert, message } from "antd";
 import {analyzeCamera} from "../../../api";
 import { func } from "prop-types";
 
@@ -32,7 +32,13 @@ export default props => {
 			num: num
 		}
 		analyzeCamera(params).then((res) => {
-			console.log(res)
+			console.log("res",res)
+			if(res.data.status === 0) {
+				console.log("sc")
+				setTimeout(() => {
+					message.success("上传成功")
+				}, 3000)
+			}
 		}).catch(() => {
 			<Alert message="接口返回错误" type="error" showIcon />
 		})
