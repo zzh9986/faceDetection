@@ -1,247 +1,196 @@
 .login-wrapper {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	box-sizing: border-box;
-	background: url('../../assets/login/login_bg.png') no-repeat;
-	background-size: cover;
-	background-position: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	min-height: 650px;
-	overflow: scroll;
-	.logo {
-		position: relative;
-		top: 30px;
-		left: 100px;
-		width: 390px;
-		height: 50px;
-		background: url('../../assets/login/logo.png') no-repeat;
-		background-size: 390px 50px;
-		background-position: left center;
-	}
-	.login-form {
-		position: absolute;
-		top: 17%;
-		left: 59%;
-		box-sizing: border-box;
-		width: 380px;
-		height: 410px;
-		background-color: #FFF;
-		border-radius: 2px;
-		box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-		.pwdmark {
-			width: 72px;
-			height: 72px;
-			background: url('../../assets/login/qrlogin.png') no-repeat;
-			background-size: 72px 72px;
-			position: relative;
-			top: 20px;
-			right: 10px;
-			cursor: pointer;
-		}
-		.qrmark {
-			width: 72px;
-			height: 72px;
-			background: url("../../assets/login/pwdlogin.png") no-repeat;
-			background-size: 72px 72px;
-			position: relative;
-			top: 20px;
-			right: 10px;
-			cursor: pointer;
-		}
-		.wrong {
-			width: 210px;
-			height: 26px;
-			border: 1px solid #F9D0D0;
-			position: absolute;
-			left: 22%;
-			margin-top: 10px;
-			background: #fef1f1 url("../../assets/login/error.png") no-repeat;
-			background-size: 14px 14px;
-			background-position: 15px;
-			.wrongtip {
-				color: #EB5858;
-				font-size: 14px;
-				margin: 0;
-				text-align: center;
-				line-height: 26px;
-			}
-		}
-		.login-title {
-			font-size: 24px;
-			font-weight: bold;
-			color: #484852;
-			text-align: center;
-			margin: 40px 0 0 0;
-		}
-		.user-input, .pwd-input, .captchas-input {
-			position: relative;
-			width: 300px;
-			margin: 0 auto;
-			box-sizing: border-box;
-			padding-left: 46px;
-			border-bottom: 1px solid #D8D8D8;
-			input {
-				width: 100%;
-				background-color: #FFF;
-				border: none;
-				font-size: 18px;
-				color: #435068;
-				font-weight: 500;
-				line-height: 36px;
-				height: 36px;
-				outline: none;
-			}
-			input::-webkit-input-placeholder {
-				color: #B0B2B8;
-				font-weight: normal;
-			}
-			input:-internal-autofill-selected {
-				background-color: #FFF;
-			}
-			input:-webkit-autofill {
-				box-shadow: 0 0 0px 1000px white inset !important;
-			}
-			&.error {
-				border-bottom: 1px solid #F05353;
-				::-webkit-input-placeholder {
-					color: #F05353;
-				}
-			}
-		}
-		.user-input {
-			margin-top: 25px;
-			margin-bottom: 30px;
-			background: url('../../assets/login/phone.png') no-repeat;
-			background-size: 20px 19px;
-			background-position: 14px center;
-		}
-		.pwd-input {
-			margin-bottom: 17px;
-			background: url('../../assets/login/password.png') no-repeat;
-			background-size: 20px 19px;
-			background-position: 14px center;
-		}
-		.captchas-input {
-			display: flex;
-			align-items: flex-end;
-			border: none;
-			margin: 0 auto;
-			padding-left: 0px;
-			& > div {
-				position: relative;
-				margin: 0 auto;
-				box-sizing: border-box;
-				padding-left: 46px;
-				background-size: 13px 17px;
-				background-position: 17px center;
-				border-bottom: 1px solid #D8D8D8;
-				width: 220px;
-				margin-right: 20px;
-				height: 39px;
-				background: url('../../assets/login/captcha.png') no-repeat;
-				background-size: 20px 19px;
-				background-position: 14px center;
-				&.error {
-					border-bottom: 1px solid #F05353;
-					::-webkit-input-placeholder {
-						color: #F05353;
-					}
-				}
-			}
-			& > img {
-				border: none;
-				width: 120px;
-				height: 50px;
-				background: #fffeff;
-			}
-			& > .empty {
-				display: inline-block;
-				width: 120px;
-				height: 50px;
-				background: #fffeff;
-			}
-		}
-		.qrimg {
-			cursor: pointer;
-			border: 1px solid #f3f3f3 !important;
-		}
-		.link {
-			color: #727EDD;
-			text-decoration: none;
-			font-size: 16px;
-		}
-		.login-btn {
-			display: block;
-			margin: 0 auto 0 auto;
-			margin-top: 30px;
-			width: 300px;
-			height: 48px;
-			line-height: 24px;
-			font-size: 20px;
-			color: #FFF;
-			background: #727edd;
-			outline: none;
-			border-color: transparent;
-			box-sizing: border-box;
-			cursor: pointer;
-			font-weight: 500;
-			text-align: center;
-			box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04), 0 2px 6px 0 rgba(0, 0, 0, 0.05);
-			border-radius: 2px;
-		}
-		.tip {
-			text-align: center;
-			margin: 25px 0 33px 0;
-			color: #484852;
-			font-size: 16px;
-			& > a {
-				cursor: pointer;
-				font-size: 16px;
-			}
-		}
-		.x-checkbox-item {
-			.icon {
-				background-size: 16px 16px;
-			}
-			.name {
-				font-size: 16px;
-				line-height: 16px;
-			}
-		}
-		.qrtitle {
-			font-size: 24px;
-			font-weight: bold;
-			color: #484852;
-			text-align: center;
-			margin: 40px 0 0 0;
-		}
-		.refresh {
-			color: #727EDD;
-			font-size: 16px;
-			margin-left: 195px;
-			cursor: pointer;
-		}
-		.qrtip {
-			text-align: center;
-			margin: 30px 0 33px 0;
-			color: #484852;
-			font-weight: 600;
-		}
-
-		.radiobox {
-			display: flex;
-			flex-direction: row;
-			color: #484852;
-			margin: 30px 0 0 46px;
-
-			.admin {
-				margin-left: 30px;
-			}
-		}
-	}
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    background: url('../../assets/login/login_bg.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 650px;
+    overflow: scroll;
+    .login-form {
+        position: absolute;
+        top: 17%;
+        left: 59%;
+        box-sizing: border-box;
+        width: 380px;
+        height: 410px;
+        background-color: #FFF;
+        border-radius: 2px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        .wrong {
+            width: 210px;
+            height: 26px;
+            border: 1px solid #F9D0D0;
+            position: absolute;
+            left: 22%;
+            margin-top: 10px;
+            background: #fef1f1 url("../../assets/login/error.png") no-repeat;
+            background-size: 14px 14px;
+            background-position: 15px;
+            .wrongtip {
+                color: #EB5858;
+                font-size: 14px;
+                margin: 0;
+                text-align: center;
+                line-height: 26px;
+            }
+        }
+        .login-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #484852;
+            text-align: center;
+            margin: 40px 0 0 0;
+        }
+        .user-input,
+        .pwd-input,
+        .captchas-input {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding-left: 46px;
+            border-bottom: 1px solid #D8D8D8;
+            input {
+                width: 100%;
+                background-color: #FFF;
+                border: none;
+                font-size: 18px;
+                color: #435068;
+                font-weight: 500;
+                line-height: 36px;
+                height: 36px;
+                outline: none;
+            }
+            input::-webkit-input-placeholder {
+                color: #B0B2B8;
+                font-weight: normal;
+            }
+            input:-internal-autofill-selected {
+                background-color: #FFF;
+            }
+            input:-webkit-autofill {
+                box-shadow: 0 0 0px 1000px white inset !important;
+            }
+            &.error {
+                border-bottom: 1px solid #F05353;
+                 ::-webkit-input-placeholder {
+                    color: #F05353;
+                }
+            }
+        }
+        .user-input {
+            margin-top: 25px;
+            margin-bottom: 30px;
+            background: url('../../assets/login/phone.png') no-repeat;
+            background-size: 20px 19px;
+            background-position: 14px center;
+        }
+        .pwd-input {
+            margin-bottom: 17px;
+            background: url('../../assets/login/password.png') no-repeat;
+            background-size: 20px 19px;
+            background-position: 14px center;
+        }
+        .captchas-input {
+            display: flex;
+            align-items: flex-end;
+            border: none;
+            margin: 0 auto;
+            padding-left: 0px;
+            &>img {
+                border: none;
+                width: 120px;
+                height: 50px;
+                background: #fffeff;
+            }
+            &>.empty {
+                display: inline-block;
+                width: 120px;
+                height: 50px;
+                background: #fffeff;
+            }
+        }
+        .qrimg {
+            cursor: pointer;
+            border: 1px solid #f3f3f3 !important;
+        }
+        .link {
+            color: #727EDD;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .login-btn {
+            display: block;
+            margin: 0 auto 0 auto;
+            margin-top: 30px;
+            width: 300px;
+            height: 48px;
+            line-height: 24px;
+            font-size: 20px;
+            color: #FFF;
+            background: #727edd;
+            outline: none;
+            border-color: transparent;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04), 0 2px 6px 0 rgba(0, 0, 0, 0.05);
+            border-radius: 2px;
+        }
+        .tip {
+            text-align: center;
+            margin: 25px 0 33px 0;
+            color: #484852;
+            font-size: 16px;
+            &>a {
+                cursor: pointer;
+                font-size: 16px;
+            }
+        }
+        .x-checkbox-item {
+            .icon {
+                background-size: 16px 16px;
+            }
+            .name {
+                font-size: 16px;
+                line-height: 16px;
+            }
+        }
+        .qrtitle {
+            font-size: 24px;
+            font-weight: bold;
+            color: #484852;
+            text-align: center;
+            margin: 40px 0 0 0;
+        }
+        .refresh {
+            color: #727EDD;
+            font-size: 16px;
+            margin-left: 195px;
+            cursor: pointer;
+        }
+        .qrtip {
+            text-align: center;
+            margin: 30px 0 33px 0;
+            color: #484852;
+            font-weight: 600;
+        }
+        .radiobox {
+            display: flex;
+            flex-direction: row;
+            color: #484852;
+            margin: 30px 0 0 46px;
+            .admin {
+                margin-left: 30px;
+            }
+        }
+    }
 }

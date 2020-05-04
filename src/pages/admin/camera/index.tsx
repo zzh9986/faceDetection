@@ -2,6 +2,7 @@ import * as React from "react";
 import 'antd/dist/antd.css';
 import { Layout, Menu, Input, Button, Alert } from "antd";
 import {analyzeCamera} from "../../../api";
+import { func } from "prop-types";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -12,8 +13,6 @@ export default props => {
 	const [id, setId] = useState(0);
 	const [studentNum, setStudentNum] = useState(0);
 	const [num, setNum] = useState(0);
-	const [file, setFile] = useState("");
-	const link: string = props.match.url.substring(props.match.url.lastIndexOf("/") + 1);
 
 	useEffect(() => {
 		setAdmin(localStorage.getItem("admin_name"))
@@ -22,16 +21,15 @@ export default props => {
 	const signOut = () => {
 		localStorage.removeItem("admin_name");
 		localStorage.removeItem("admin_id");
-		props.history.$push(`${props.match.url.replace(link, "signin")}`)
+		props.history.$push(`/index/signin`)
 	}
 
 	const submit = () => {
 		const params = {
-			id,
+			id: id,
 			date: `${new Date().getFullYear()}` + '-' + `${new Date().getMonth() +1}` + '-' + `${new Date().getDate()}` ,
-			studentNum,
-			num,
-			file
+			studentNum: studentNum,
+			num: num
 		}
 		analyzeCamera(params).then((res) => {
 			console.log(res)
@@ -40,12 +38,89 @@ export default props => {
 		})
 	}
 
+	const getCamera = () => {
+		// const video = document.getElementById("camera")
+		navigator.mediaDevices.getUserMedia({
+			audio: true, 
+			video: { width: 1280, height: 720 }
+		}).then((res) => {
+			const video = document.querySelector('video')
+  			video.srcObject = res;
+  			video.onloadedmetadata = function(e) {
+				  console.log(e)
+  			  video.play();
+  			};
+		})
+
+
+		let mediaRecorder;
+		  let timer;
+		  let n =0;
+      	const stopButton = document.getElementById("stop");
+      	const startButton = document.getElementById("start");
+		
+      	navigator.mediaDevices.getUserMedia({
+      	    audio: true,
+      	    video: true,
+      	}).then(stream => {
+      	    let liveVideo = document.querySelector("video");
+      	    // liveVideo.src = URL.createObjectURL(stream); // 你会看到一些警告
+      	    liveVideo.srcObject = stream;
+      	    liveVideo.play();
+			
+      	    stopButton.addEventListener("click", () => {
+				clearInterval(timer);
+				n = 0;
+				if (mediaRecorder) {
+				  mediaRecorder.stop();
+				} else {
+				  alert("还没有开始。");
+				}
+			  });
+      	    startButton.addEventListener("click", e => {
+				const timerEl = document.querySelector(".timer");
+				timer = setInterval(() => {
+				  n += 1;
+				  timerEl.textContent = `${n}s`;
+				}, 1000);
+      	      	let recordedChunks = [];
+      	  		mediaRecorder = new MediaRecorder(stream);
+      	  		mediaRecorder.start();
+
+      	  		mediaRecorder.addEventListener("dataavailable", function(e) {
+      	  		  if (e.data.size > 0) recordedChunks.push(e.data);
+      	  		});
+				
+      	  		mediaRecorder.addEventListener("stop", function() {
+					let downloadLink = document.createElement("a");
+					downloadLink.href = URL.createObjectURL(
+					  new Blob(recordedChunks, {
+						type: "application/video",
+					  })
+					);
+					// downloadLink.download = 'live.webm';
+					downloadLink.download = "live.mp4";
+					// downloadLink.download = 'live.mp4';
+					downloadLink.click();
+      	  		});
+				
+      	  		mediaRecorder.addEventListener("start", e => {
+      	  		});
+      	    });
+      	  });
+
+	}
+
 	useEffect(() => {
-		setId(1)
-		setStudentNum(2)
-		setNum(3)
-		setFile('aa')
-	})
+		getCamera()
+	}, [])
+
+	// useEffect(() => {
+	// 	setId(1)
+	// 	setStudentNum(2)
+	// 	setNum(3)
+	// 	setFile('aa')
+	// })
 
 	return (
 		<>
@@ -94,9 +169,14 @@ export default props => {
 							setStudentNum(Number(e.target.value))
 						}} /><br/>
 						录制视频：&nbsp;
-						<Button type="primary" style={{marginLeft: 26, marginBottom: 80}}>
-							录制视频
+						<Button type="primary" style={{marginLeft: 26, marginBottom: 30}} id="start">
+							开始录制视频
+						</Button>
+						<Button type="primary" style={{marginLeft: 26, marginBottom: 30}} id="stop">
+							结束录制视频
 						</Button><br/>
+						<p>已录制 <span className="timer"></span></p>
+						<video style={{width: 650,height: 350}} src="" id="camera"></video><br/>
 						<Button type="primary" onClick={() => {
 							submit()
 						}}>

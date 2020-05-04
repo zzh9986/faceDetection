@@ -20,7 +20,6 @@ export default props => {
 	const [dataList, setDataList] = useState<any>([]);
 	const [type, setType] = useState("teacherName");//搜索类型
 	const [value,setValue] = useState("");//搜索输入值
-	const link: string = props.match.url.substring(props.match.url.lastIndexOf("/") + 1);
 
 	useEffect(() => {
 		setAdmin(localStorage.getItem("admin_name"))
@@ -29,7 +28,7 @@ export default props => {
 	const signOut = () => {
 		localStorage.removeItem("admin_name");
 		localStorage.removeItem("admin_id");
-		props.history.$push(`${props.match.url.replace(link, "signin")}`)
+		props.history.$push(`/index/signin`)
 	}
 
 	const columns = [

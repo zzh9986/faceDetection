@@ -110,6 +110,146 @@ export default props => {
 			)
 		},
 		{
+			title: '图片4',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[3]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[3]["image"]} />
+  					</Popover>
+				</span>
+			)
+		},
+		{
+			title: '抬头人数',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<span>{res.images[3]["face"]}</span>
+				</span>
+			)
+		},
+		{
+			title: '图片5',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[4]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[4]["image"]} />
+  					</Popover>
+				</span>
+			)
+		},
+		{
+			title: '抬头人数',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<span>{res.images[4]["face"]}</span>
+				</span>
+			)
+		},
+		{
+			title: '图片6',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[5]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[5]["image"]} />
+  					</Popover>
+				</span>
+			)
+		},
+		{
+			title: '抬头人数',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<span>{res.images[5]["face"]}</span>
+				</span>
+			)
+		},
+		{
+			title: '图片7',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[6]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[6]["image"]} />
+  					</Popover>
+				</span>
+			)
+		},
+		{
+			title: '抬头人数',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<span>{res.images[6]["face"]}</span>
+				</span>
+			)
+		},
+		{
+			title: '图片8',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[7]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[7]["image"]} />
+  					</Popover>
+				</span>
+			)
+		},
+		{
+			title: '抬头人数',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<span>{res.images[7]["face"]}</span>
+				</span>
+			)
+		},
+		{
+			title: '图片9',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[8]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[8]["image"]} />
+  					</Popover>
+				</span>
+			)
+		},
+		{
+			title: '抬头人数',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<span>{res.images[8]["face"]}</span>
+				</span>
+			)
+		},
+		{
+			title: '图片10',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[9]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[9]["image"]} />
+  					</Popover>
+				</span>
+			)
+		},
+		{
+			title: '抬头人数',
+			key: 'action',
+			render: (res) => (
+				<span>
+					<span>{res.images[9]["face"]}</span>
+				</span>
+			)
+		},
+		{
 			title: '应到人数',
 			key: 'action',
 			render: () => (

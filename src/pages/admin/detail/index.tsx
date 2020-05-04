@@ -18,7 +18,6 @@ export default props => {
 	const [count,setCount] = useState("");//应到人数
 	const [id, setId] = useState("");
 	const [dataList, setDataList] = useState<any>([]);
-	const link: string = props.match.url.substring(props.match.url.lastIndexOf("/") + 1);
 
 	useEffect(() => {
 		setAdmin(localStorage.getItem("admin_name"))
@@ -40,7 +39,7 @@ export default props => {
 	const signOut = () => {
 		localStorage.removeItem("admin_name");
 		localStorage.removeItem("admin_id");
-		props.history.$push(`${props.match.url.replace(link, "signin")}`)
+		props.history.$push(`/index/signin`)
 	}
 
 	const onFinish = values => {
