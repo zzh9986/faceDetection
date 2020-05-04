@@ -3,7 +3,7 @@ import { getTeacherInfo } from "../../api";
 import 'antd/dist/antd.css';
 import "./index.scss";
 import { Layout } from "../../components";
-import { Table } from "antd";
+import { Table, Alert } from "antd";
 
 const { Content } = Layout;
 
@@ -17,14 +17,13 @@ export default props => {
 			userId: localStorage.getItem("user_id")
 		}
 		getTeacherInfo(params).then((res) => {
-			console.log(res)
 			if (res.data.status === 0) {
 				localStorage.setItem("user_name", res.data.teacherName)
 				setName(res.data.teacherName)
 				setDataList(res.data.content)
 			}
-		}).catch((err) => {
-			console.log(err)
+		}).catch(() => {
+			<Alert message="接口返回错误" type="error" showIcon />
 		})
 	}
 
@@ -34,28 +33,26 @@ export default props => {
 		props.history.$push(`${props.match.url.replace(link, "signin")}`)
 	}
 
-	console.log(dataList)
-
 	const columns = [
 		{
-			title: '课程ID',
+			title: "课程ID",
 			dataIndex: 'id',
-			key: 'id'
+			key: 'action'
 		},
 		{
 			title: '课程名称',
 			dataIndex: 'courseName',
-			key: 'courseName'
+			key: 'action'
 		},
 		{
 			title: '应到人数',
 			dataIndex: 'studentCount',
-			key: 'studentCount'
+			key: 'action'
 		},
 		{
 			title: '课程教室',
 			dataIndex: 'clazzRoom',
-			key: 'clazzRoom'
+			key: 'action'
 		},
 		{
 			title: '操作',
@@ -63,7 +60,6 @@ export default props => {
 			render: (res) => (
 				<span>
 					<a onClick={() => {
-						console.log("id",res.id)
 						localStorage.setItem("class_id",res.id)
 						localStorage.setItem("class_count", res.studentCount)
 						props.history.$push(`${props.match.url.replace(link, `course`)}`)
@@ -77,7 +73,6 @@ export default props => {
 		getInfo()
 	}, [])
 
-	console.log(props)
 	return (
 		<>
 			<div className="header">
@@ -86,7 +81,7 @@ export default props => {
 			</div>
 			<Layout>
 				<Content>
-					<Table bordered={true} columns={columns} dataSource={dataList} pagination={false} size={"middle"} />
+					<Table rowClassName={"tablecell"} bordered={true} columns={columns} dataSource={dataList} pagination={false} size={"middle"} />
 				</Content>
 			</Layout>
 		</>

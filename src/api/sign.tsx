@@ -23,3 +23,11 @@ export function getAdminInfo(params?) {
 export function bindCourse(params?) {
 	return $ajax.$post("http://fthsdz.natappfree.cc/bind1", params)
 }
+
+export function searchCourse(params?) {
+	return $ajax.$post("http://fthsdz.natappfree.cc/search1", params)
+}
+
+export function analyzeCamera(params?) {
+	return $ajax.$post("http://fthsdz.natappfree.cc/analyze", params)
+}

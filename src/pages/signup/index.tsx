@@ -1,5 +1,6 @@
 import * as React from "react";
 import { PwdLogin } from "../../components";
+import {Alert} from "antd";
 import { signUp } from '../../api';
 import "./index.scss";
 
@@ -29,19 +30,17 @@ export default props => {
 			user_password: password
 		}
 		signUp(params).then((res) => {
-			console.log(res)
 			if (res.data.status === 0) {
 				props.history.$push(`${props.match.url.replace(link, "signin")}`)
 			}
 			if (res.data.status === -1) {
 				setErrorTip(res.data.msg)
 			}
-		}).catch(err => {
-			console.log(err)
+		}).catch(() => {
+			<Alert message="接口返回错误" type="error" showIcon />
 		})
 	}
 
-	console.log(props)
 	return (
 		<>
 			<div className="login-wrapper">

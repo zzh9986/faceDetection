@@ -3,7 +3,7 @@ import { getCourseInfo } from "../../api";
 import 'antd/dist/antd.css';
 import "./index.scss";
 import { Layout } from "../../components";
-import { Table } from "antd";
+import { Table, Alert, Popover } from "antd";
 
 const { Content } = Layout;
 
@@ -24,11 +24,10 @@ export default props => {
 		}
 		getCourseInfo(params).then((res) => {
 			if (res.data.status === 0) {
-				console.log("status")
 				setDataList(res.data.content)
 			}
-		}).catch((err) => {
-			console.log(err)
+		}).catch(() => {
+			<Alert message="接口返回错误" type="error" showIcon />
 		})
 	}
 
@@ -55,7 +54,9 @@ export default props => {
 			key: 'action',
 			render: (res) => (
 				<span>
-					<img style={{ width: 250, height: 200 }} src={res.images[0]["image"]} />
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[0]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[0]["image"]} />
+  					</Popover>
 				</span>
 			)
 		},
@@ -73,7 +74,9 @@ export default props => {
 			key: 'action',
 			render: (res) => (
 				<span>
-					<img style={{ width: 250, height: 200 }} src={res.images[1]["image"]} />
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[1]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[1]["image"]} />
+  					</Popover>
 				</span>
 			)
 		},
@@ -91,7 +94,9 @@ export default props => {
 			key: 'action',
 			render: (res) => (
 				<span>
-					<img style={{ width: 250, height: 200 }} src={res.images[2]["image"]} />
+					<Popover content={(<img className="image" style={{ width: 280, height: 230 }} src={res.images[2]["image"]} />)}>
+						<img className="image" style={{ width: 180, height: 130 }} src={res.images[2]["image"]} />
+  					</Popover>
 				</span>
 			)
 		},
@@ -134,7 +139,6 @@ export default props => {
 		getInfo()
 	}, [])
 
-	console.log(props)
 	return (
 		<>
 			<div className="header">

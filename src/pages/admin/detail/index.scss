@@ -1,9 +1,3 @@
-html,
-body {
-    margin: 0;
-    padding: 0;
-}
-
 .header {
     display: flex;
     flex-direction: row;
@@ -24,13 +18,8 @@ body {
     }
 }
 
-.tablebox {
-    text-align: center;
-    .ant-table.ant-table-middle .ant-table-thead>tr>th {
-        text-align: center;
-    }
-}
-
-.ant-table.ant-table-bordered tbody>tr>td {
-    text-align: center;
+.sidebar {
+    width: 200px;
+    background-color: #000;
+    position: relative;
 }

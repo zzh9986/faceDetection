@@ -1,3 +1,4 @@
 node_modules/*
 *.scss.d.ts
 src/components/table/table.tsx
+src/pages/admin/camera/index.tsx

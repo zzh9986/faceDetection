@@ -1,25 +1,29 @@
-html,body {
-	margin: 0;
-	padding: 0;
+html,
+body {
+    margin: 0;
+    padding: 0;
 }
+
 .header {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	height: 60px;
-	background-color: #4C517A;
-	padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 60px;
+    background-color: #4C517A;
+    padding: 0 20px;
+    .tip {
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 auto;
+    }
+    .signout {
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+    }
+}
 
-	.tip {
-		color: #fff;
-		font-size: 18px;
-		font-weight: bold;
-		margin: 0 auto;
-	}
-
-	.signout {
-		color: #fff;
-		font-size: 18px;
-		cursor: pointer;
-	}
+.tablecell {
+    text-align: center;
 }

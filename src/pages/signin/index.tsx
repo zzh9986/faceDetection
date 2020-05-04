@@ -2,6 +2,7 @@ import * as React from "react";
 import { PwdLogin } from "../../components";
 import "./index.scss";
 import { signIn } from "../../api/index";
+import {Alert} from "antd";
 
 export default props => {
 	const { useState } = React;
@@ -45,13 +46,11 @@ export default props => {
 			if (res.data.status === -1) {
 				setErrorTip(res.data.msg)
 			}
-			console.log(res)
-		}).catch(err => {
-			console.log(err)
+		}).catch(() => {
+			<Alert message="接口返回错误" type="error" showIcon />
 		})
 	}
 
-	console.log(props)
 	return (
 		<>
 			<div className="login-wrapper">
