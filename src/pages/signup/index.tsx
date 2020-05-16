@@ -3,6 +3,8 @@ import { PwdLogin } from "../../components";
 import {Alert} from "antd";
 import { signUp } from '../../api';
 import "./index.scss";
+import { Upload, message } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 export default props => {
 	const { useState } = React;
@@ -13,6 +15,8 @@ export default props => {
 	const [password, setPassword] = useState<string>("");
 	const [pwdBlank, setPwdBlank] = useState<boolean>(false);
 	const [errortip, setErrorTip] = useState<string>("");
+	const [imageUrl,setimageUrl] = useState("");
+	const [loading, setLoading] = useState(false);
 	const link: string = props.match.url.substring(props.match.url.lastIndexOf("/") + 1);
 
 	const handleSave = () => {
@@ -27,7 +31,8 @@ export default props => {
 		const params = {
 			user_name: username,
 			user_id: userId,
-			user_password: password
+			user_password: password,
+			pic: imageUrl
 		}
 		signUp(params).then((res) => {
 			if (res.data.status === 0) {
@@ -41,10 +46,52 @@ export default props => {
 		})
 	}
 
+	const uploadButton = (
+		<div>
+		  {loading ? <LoadingOutlined /> : <PlusOutlined />}
+		  <div className="ant-upload-text">上传头像</div>
+		</div>
+	  );
+
+	  function getBase64(img, callback) {
+		const reader = new FileReader();
+		reader.addEventListener('load', () => callback(reader.result));
+		reader.readAsDataURL(img);
+	  }
+	  
+	  function beforeUpload(file) {
+		const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+		if (!isJpgOrPng) {
+		  message.error('You can only upload JPG/PNG file!');
+		}
+		const isLt2M = file.size / 1024 / 1024 < 2;
+		if (!isLt2M) {
+		  message.error('Image must smaller than 2MB!');
+		}
+		return isJpgOrPng && isLt2M;
+	  }
+
+	  const handleChange = info => {
+		if (info.file.status === 'uploading') {
+		  setLoading(true)
+		  return;
+		}
+		if (info.file.status === 'done') {
+		  // Get this url from response in real world.
+		  getBase64(info.file.originFileObj, imageUrl =>
+			{
+				setimageUrl(imageUrl)
+				setLoading(false)
+			}
+		  );
+		  console.log(imageUrl)
+		}
+	  };
+
 	return (
 		<>
 			<div className="login-wrapper">
-				<div className="login-form">
+				<div className="signup-form">
 					<>
 						{errortip && (
 							<>
@@ -111,6 +158,17 @@ export default props => {
 							onKeyDown={handleSave}
 							onKeyPress={e => e}
 						/>
+						<Upload
+        					name="avatar"
+        					listType="picture-card"
+        					className="antupload"
+        					showUploadList={false}
+        					action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        					beforeUpload={beforeUpload}
+        					onChange={(e) => {
+								handleChange(e)
+							}}
+      					>{imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}</Upload>
 						<button className="login-btn" onClick={handleSave}>
 							注册
 						</button>

@@ -1,4 +1,4 @@
-import * as React from "react";
+ import * as React from "react";
 import 'antd/dist/antd.css';
 import { Layout, Menu, Input, Button, Alert, message } from "antd";
 import {analyzeCamera} from "../../../api";
@@ -12,7 +12,6 @@ export default props => {
 	const [admin, setAdmin] = useState<string>("");
 	const [id, setId] = useState(0);
 	const [studentNum, setStudentNum] = useState(0);
-	const [num, setNum] = useState(0);
 
 	useEffect(() => {
 		setAdmin(localStorage.getItem("admin_name"))
@@ -28,8 +27,7 @@ export default props => {
 		const params = {
 			id: id,
 			date: `${new Date().getFullYear()}` + '-' + `${new Date().getMonth() +1}` + '-' + `${new Date().getDate()}` ,
-			studentNum: studentNum,
-			num: num
+			studentNum: studentNum
 		}
 		analyzeCamera(params).then((res) => {
 			console.log("res",res)
@@ -168,9 +166,6 @@ export default props => {
       				    课程ID：&nbsp;<Input placeholder="请输入课程ID" style={{width: 230,marginLeft: 40,marginBottom: 30}} onChange={(e) => {
 							  setId(Number(e.target.value))
 						  }}/><br/>
-						课程节数：&nbsp;&nbsp;&nbsp;&nbsp;第<Input placeholder="请输入课程节数" style={{width: 230,marginLeft: 0,marginBottom: 30}} onChange={(e) => {
-							setNum(Number(e.target.value))
-						}} />节课<br/>
 						应到人数：&nbsp;<Input placeholder="请输入应到人数" style={{width: 230,marginLeft: 26, marginBottom: 30}} onChange={(e) => {
 							setStudentNum(Number(e.target.value))
 						}} /><br/>

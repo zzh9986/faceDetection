@@ -4,10 +4,11 @@ import 'antd/dist/antd.css';
 import "./index.scss";
 // import { Layout } from "../../components";
 import {bindCourse} from "../../../api";
-import { Table, Modal, Form, Input, Layout, Menu, Alert } from "antd";
+import { Table, Modal, Form, Input, Layout, Menu, Alert, Select } from "antd";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
+const { Option } = Select;
 
 export default props => {
 	const { useState, useEffect } = React;
@@ -16,6 +17,10 @@ export default props => {
 	const [name, setName] = useState("");//课程名称
 	const [room,setRoom] = useState("");//课程教室
 	const [count,setCount] = useState("");//应到人数
+	const [xiaoqu,setXiaoqu] = useState("" || "dongqu");//校区
+	const [clazzs,setClazzs] = useState("");//教学班组成
+	const [xingzhi,setXingzhi] = useState("" || "bixiu");//教学班性质
+	const [credit,setCredit] = useState(0);//学分
 	const [id, setId] = useState("");
 	const [dataList, setDataList] = useState<any>([]);
 
@@ -56,7 +61,11 @@ export default props => {
 			id: id,
 			clazzName: name,
 			clazzRoom: room,
-			studentCount: Number(count)
+			studentCount: Number(count),
+			xiaoqu,
+			xingzhi,
+			credit,
+			clazzs
 		}
 		bindCourse(params).then(() => {
 			getInfo()
@@ -134,6 +143,23 @@ export default props => {
 									/>
       							</Form.Item>
 								<Form.Item
+									label="校区"
+									name="xiaoqu"
+									rules={[
+										{
+											required: true
+										}
+									]}
+								>
+									<Select defaultValue="dongqu" style={{ width: 240 }} onChange={(v) => {
+										setXiaoqu(v)
+									}}>
+      									<Option value="dongqu">长安校区东区</Option>
+      									<Option value="xiqu">长安校区西区</Option>
+										<Option value="yanta">雁塔校区</Option>
+    								</Select>
+								</Form.Item>
+								<Form.Item
 									label="教室位置"
 									name="room"
 									rules={[
@@ -151,12 +177,12 @@ export default props => {
 									/>
       							</Form.Item>
 								<Form.Item
-									label="应到人数"
+									label="教学班人数"
 									name="stucount"
 									rules={[
 										{
 											required: true,
-											message: "请输入应到人数"
+											message: "请输入教学班人数"
 										}
 									]}
 								>
@@ -164,6 +190,58 @@ export default props => {
 										value={count}
 										onChange={(e) => {
 											setCount(e.target.value)
+										}} 
+									/>
+								</Form.Item>
+								<Form.Item
+									label="教学班组成"
+									name="clazzs"
+									rules={[
+										{
+											required: true,
+											message: "请输入教学班组成"
+										}
+									]}
+								>
+									<Input 
+										value={clazzs}
+										onChange={(e) => {
+											setClazzs(e.target.value)
+										}} 
+									/>
+								</Form.Item>
+								<Form.Item
+									label="课程性质"
+									name="xingzhi"
+									rules={[
+										{
+											required: true,
+											message: "请输入课程性质"
+										}
+									]}	
+								>
+									<Select defaultValue="bixiu" style={{ width: 240 }} onChange={(v) => {
+										console.log("value",v)
+										setXingzhi(v)
+									}}>
+      									<Option value="bixiu">必修</Option>
+      									<Option value="xuanxiu">选修</Option>
+    								</Select>
+								</Form.Item>
+								<Form.Item
+									label="学分"
+									name="credit"
+									rules={[
+										{
+											required: true,
+											message: "请输入学分"
+										}
+									]}
+								>
+									<Input 
+										value={credit}
+										onChange={(e) => {
+											setCredit(Number(e.target.value))
 										}} 
 									/>
 								</Form.Item>

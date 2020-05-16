@@ -44,12 +44,6 @@ export default props => {
 			key: 'date'
 		},
 		{
-			title: '上课时间',
-			dataIndex: 'clazzNum',
-			width: '75px',
-			key: 'clazzNum'
-		},
-		{
 			title: '图片1',
 			key: 'action',
 			render: (res) => (

@@ -5,6 +5,7 @@ import SignUp from './pages/signup';
 import Info from './pages/info';
 import Course from './pages/course';
 import Admin from './pages/admin';
+import Personal from './pages/info/personal';
 
 interface IRedirectGen {
 	pathname: string,
@@ -29,6 +30,7 @@ const MainRouter: React.FunctionComponent<RouteComponentProps> = (props) => {
 				<Route path={pathGenerate('info')} component={Info} />
 				<Route path={pathGenerate('course')} component={Course} />
 				<Route path={pathGenerate('admin')} component={Admin} />
+				<Route path={pathGenerate('personal')} component={Personal} />
 				<Route render={({ location }) => <Redirect to={redirectPathGenerate('signin', location)} />} />
 			</Switch>
 		</Router>
